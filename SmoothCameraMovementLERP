@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraFollow : MonoBehaviour
+{
+    public Transform target;
+    public float smoothSpeed = 0.125f;
+    public Vector3 offset;
+
+    private void FixedUpdate()
+    {
+        Vector3 nonSmoothPosition = target.position + offset; //follows player directly, can be choppy
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, nonSmoothPosition, smoothSpeed); //Lerp = interpolate between two points, IE literally a smoothing command for movement/trasnforms
+
+        transform.LookAt(target);
+    }
+}
